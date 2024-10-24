@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF4081</color> <!-- Rosa -->
+    <color name="colorPrimaryDark">#C51162</color> <!-- Rosa oscuro -->
+    <color name="colorAccent">#FFABAB</color> <!-- Rosa claro -->
+    <color name="backgroundColor">#000000</color> <!-- Negro -->
+    <color name="textColor">#FFFFFF</color> <!-- Blanco para el texto -->
+</resources>
