@@ -1,6 +1,8 @@
 package com.example.weatherapp;
 
-import android.content.Intent; // Asegúrate de importar esta clase
+import static android.os.Build.VERSION_CODES.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,12 +24,27 @@ public class MainActivity extends AppCompatActivity {
         currentForecastButton.setText(Constants.CURRENT_FORECAST_TEXT);
         citiesListButton.setText(Constants.CITIES_LIST_TEXT);
 
+        // Agregar el OnClickListener al botón "Pronóstico actual"
+        currentForecastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cityName = "Buenos Aires";
+
+                // Crear el Intent para iniciar DetailActivity
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("cityName", cityName); // Pasar el nombre de la ciudad
+                startActivity(intent); // Iniciar la nueva actividad
+            }
+        });
+
         // Agregar el OnClickListener al botón "Listado de ciudades"
         citiesListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                startActivity(intent);
+                Intent MyIntent = new Intent(MainActivity.this, ListActivity.class);
+                MyIntent.putExtra("lat", 25.77427f);
+                MyIntent.putExtra("lon", -80.19366f);
+                startActivity(MyIntent);
             }
         });
     }

@@ -1,8 +1,12 @@
 package com.example.weatherapp;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import android.os.Bundle;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
