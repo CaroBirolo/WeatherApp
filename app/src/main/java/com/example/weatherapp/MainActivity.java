@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent MyIntent = new Intent(MainActivity.this, ListActivity.class);
-                MyIntent.putExtra("lat", 25.77427f);
-                MyIntent.putExtra("lon", -80.19366f);
+                MyIntent.putExtra("lat", 39.47391f);
+                MyIntent.putExtra("lon", -0.37966f);
                 startActivity(MyIntent);
             }
         });

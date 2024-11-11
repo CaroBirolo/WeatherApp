@@ -32,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         latitud = miIntent.getFloatExtra("lat",  0.0F);
         longitud = miIntent.getFloatExtra("lon",  0.0F);
 
-        nameOfCity = findViewById(R.id.currentTemperatureTextView);
+        nameOfCity = findViewById(R.id.name);
         tempActual = findViewById(R.id.currentTemperatureTextView);
         tempMax = findViewById(R.id.maxTemperatureTextView);
         tempMin = findViewById(R.id.minTemperatureTextView);
@@ -51,12 +51,13 @@ public class DetailActivity extends AppCompatActivity {
         String cityName = getIntent().getStringExtra("cityName");
 
         // Configurar el TextView para mostrar el nombre de la ciudad
-        //TextView cityNameTextView = findViewById(R.id.cityNameTextView);
-        //cityNameTextView.setText(cityName);
+        TextView cityNameTextView = findViewById(R.id.name);
+        cityNameTextView.setText(cityName);
 
         // Configurar el botón de volver
         Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish()); 
+        backButton.setOnClickListener(v -> finish());
+        this.getCurrentWeather();
     }
 
     private void getCurrentWeather(){
@@ -67,9 +68,9 @@ public class DetailActivity extends AppCompatActivity {
                 if (Response.isSuccessful() && Response.body() != null) {
                     Results results = Response.body();
                     nameOfCity.setText(results.name);
-                    tempActual.setText(String.valueOf(results.main.temp.shortValue()));
-                    tempMax.setText(String.valueOf(results.main.temp_max.shortValue()));
-                    tempMin.setText(String.valueOf(results.main.temp_min));
+                    tempActual.setText("Temperatura actual: "+String.valueOf(results.main.temp.shortValue()));
+                    tempMax.setText("Temperatura máxima: "+String.valueOf(results.main.temp_max.shortValue()));
+                    tempMin.setText("Temperatura mínima: "+String.valueOf(results.main.temp_min));
                     Results.Weather weather = results.weather.get(0);
                     description.setText(weather.description);
                 }else {
