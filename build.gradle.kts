@@ -1,16 +1,6 @@
 // build.gradle.kts (nivel raíz)
 
 plugins {
-
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
-
+    alias(libs.plugins.android.application) apply false
 }
 

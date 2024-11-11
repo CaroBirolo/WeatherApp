@@ -4,17 +4,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static Retrofit instance = null;
-
+    private static RetrofitClient instance = null;
     private API myApi;
 
     private RetrofitClient(){
-        AnimatedStateListDrawableCompat GsonConverterFactory;
-        Retrofit Retrofit = newRetrofit.Builder()
-                .baseUrl (API.Base_URL)
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API.Base_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        myApi = Retrofit.create(API.class);
+        myApi = retrofit.create(API.class);
     }
 
     public static synchronized RetrofitClient getInstance(){

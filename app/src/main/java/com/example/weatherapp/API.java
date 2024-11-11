@@ -18,6 +18,6 @@ public interface API {
             @Query("long") Float longitud,
             @Query("appId") String token,
             @Query("units") String units,
-            @Query("lang") String lang;
+            @Query("lang") String lang
     );
 }

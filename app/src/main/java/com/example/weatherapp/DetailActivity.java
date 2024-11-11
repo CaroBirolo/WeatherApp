@@ -1,10 +1,7 @@
 package com.example.weatherapp;
 
-import static android.os.Build.VERSION_CODES.R;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.widget.TextView; // Importa TextView
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,13 +11,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.widget.Button;
 import android.widget.Toast;
-
-import javax.xml.transform.Result;
-
-import retrofit2.call;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -58,8 +51,8 @@ public class DetailActivity extends AppCompatActivity {
         String cityName = getIntent().getStringExtra("cityName");
 
         // Configurar el TextView para mostrar el nombre de la ciudad
-        TextView cityNameTextView = findViewById(R.id.cityNameTextView);
-        cityNameTextView.setText(cityName);
+        //TextView cityNameTextView = findViewById(R.id.cityNameTextView);
+        //cityNameTextView.setText(cityName);
 
         // Configurar el botón de volver
         Button backButton = findViewById(R.id.backButton);
@@ -68,15 +61,15 @@ public class DetailActivity extends AppCompatActivity {
 
     private void getCurrentWeather(){
         Call<Results> call = RetrofitClient.getInstance().getMyApi().getCurrentWeather(latitud, longitud, API.TOKEN, API.UNITS, API.LANG);
-        call.enqueue(new Call.Callback<Results>(){
+        call.enqueue(new Callback<Results>(){
             @Override
             public void onResponse(@NonNull Call<Results> call, @NonNull Response<Results> Response) {
-                if (Response.isSuccessful()&& response.body() != null) {
+                if (Response.isSuccessful() && Response.body() != null) {
                     Results results = Response.body();
                     nameOfCity.setText(results.name);
                     tempActual.setText(String.valueOf(results.main.temp.shortValue()));
                     tempMax.setText(String.valueOf(results.main.temp_max.shortValue()));
-                    tempMin.setText(String.valueOf(results.main.temp_min.shortValue()));
+                    tempMin.setText(String.valueOf(results.main.temp_min));
                     Results.Weather weather = results.weather.get(0);
                     description.setText(weather.description);
                 }else {
@@ -85,7 +78,7 @@ public class DetailActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<results> call, @NonNull Throwable t){
+            public void onFailure(@NonNull Call<Results> call, @NonNull Throwable t){
 
             }
         });
